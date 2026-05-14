@@ -2,6 +2,13 @@
 
 Predicting which credit card customers will close their accounts, using the Kaggle BankChurners dataset. The goal isn't just prediction - it's figuring out who's worth retaining and what to do about each customer.
 
+## Live demo
+
+- **Try the app:** [tarduak-bank-churn.streamlit.app](https://tarduak-bank-churn.streamlit.app)
+- **API docs:** [bank-churn-prediction-bxlx.onrender.com/docs](https://bank-churn-prediction-bxlx.onrender.com/docs)
+
+The Streamlit app calls a FastAPI service hosted on Render. First request may take 30-60 seconds — Render's free tier puts the API to sleep after periods of inactivity, so the cold start adds a wake-up delay. Subsequent requests are fast.
+
 ## Why this project
 
 Most churn portfolio projects stop at "I trained XGBoost and got 95% accuracy." I wanted to go further:
