@@ -30,6 +30,22 @@ The dataset ships with two pre-computed "Naive Bayes" prediction columns that wi
 - Python: pandas, sqlalchemy, scikit-learn, xgboost, shap, matplotlib, seaborn
 - Jupyter for the analysis notebook
 
+## Architecture
+
+```
+User browser
+    ↓
+Streamlit app (Streamlit Cloud)
+    ↓ POST /predict
+FastAPI service (Render)
+    ↓
+XGBoost model + SHAP explainer (pickled)
+```
+
+The Streamlit app is the user-facing dashboard. It collects customer features through interactive widgets, packages them as JSON, and sends them to the FastAPI service over HTTPS. The API recreates the SQL feature engineering in Python, runs the prediction, computes SHAP attributions for the top features, assigns a customer segment, and returns the result. The Streamlit app displays everything visually.
+
+Both services are deployed separately and communicate across the public internet. Standard microservice pattern with free-tier hosting (Streamlit Community Cloud for the UI, Render for the API).
+
 ## What I did
 
 1. Loaded the CSV into Postgres
